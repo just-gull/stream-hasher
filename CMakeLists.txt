@@ -4,5 +4,11 @@ project(stream-hasher VERSION 0.1.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_executable(stream-hasher main.cpp hash-stream.cpp)
+find_package(OpenSSL REQUIRED)
 
+if (OPENSSL_FOUND)
+  include_directories(${OPENSSL_INCLUDE_DIR})
+
+  add_executable(stream-hasher main.cpp hash-stream.cpp openssl-wrapper.cpp)
+  target_link_libraries(stream-hasher OpenSSL::Crypto)
+endif()
