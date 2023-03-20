@@ -9,6 +9,11 @@ find_package(OpenSSL REQUIRED)
 if (OPENSSL_FOUND)
   include_directories(${OPENSSL_INCLUDE_DIR})
 
-  add_executable(stream-hasher main.cpp hash-stream.cpp openssl-wrapper.cpp)
+  add_executable(stream-hasher
+    main.cpp 
+    hash-stream.cpp 
+    openssl-wrapper.cpp 
+    hashing-exception.cpp
+  )
   target_link_libraries(stream-hasher OpenSSL::Crypto)
 endif()
