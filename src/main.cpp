@@ -2,8 +2,8 @@
 #include <stdexcept>
 #include <fstream>
 
-#include "hash-stream.hpp"
-#include "hashing-exception.hpp"
+#include "hashing/hash-stream.hpp"
+#include "hashing/hashing-exception.hpp"
 
 int main() {
   try {

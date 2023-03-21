@@ -4,7 +4,7 @@
 #include <cstddef>
 #include <iostream>
 
-#include "openssl-wrapper.hpp"
+#include "../openssl-wrapper/openssl-wrapper.hpp"
 
 class HashStream {
   size_t processed_bytes{};

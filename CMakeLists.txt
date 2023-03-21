@@ -10,10 +10,10 @@ if (OPENSSL_FOUND)
   include_directories(${OPENSSL_INCLUDE_DIR})
 
   add_executable(stream-hasher
-    main.cpp 
-    hash-stream.cpp 
-    openssl-wrapper.cpp 
-    hashing-exception.cpp
+    src/main.cpp 
+    src/hashing/hash-stream.cpp 
+    src/hashing/hashing-exception.cpp
+    src/openssl-wrapper/openssl-wrapper.cpp 
   )
   target_link_libraries(stream-hasher OpenSSL::Crypto)
 endif()

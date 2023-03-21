@@ -6,7 +6,7 @@
 #include <iostream>
 #include <iomanip>
 
-#include "hashing-exception.hpp"
+#include "../hashing/hashing-exception.hpp"
 
 extern "C" {
   #include <openssl/evp.h>
