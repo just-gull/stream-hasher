@@ -21,7 +21,7 @@ public:
   {
     ctx = OSSL_LIB_CTX_new();
     if (!ctx) {
-      throw HashingException { "OSSL_LIB_CTX_new() returned nullptr\n" };
+      throw HashingException { "OSSL_LIB_CTX_new() returned nullptr" };
     }
     std::cout << "OpenSSLContext constructor finished" << std::endl;
   }
@@ -47,7 +47,7 @@ public:
     // auto val = contextlibrary_context();
     md = EVP_MD_fetch(context.library_context(), "SHA1", nullptr);
     if (!md) {
-      throw HashingException { "EVP_MD_fetch could not find SHA1\n" };
+      throw HashingException { "EVP_MD_fetch could not find SHA1" };
     }
     std::cout << "OpenSSLMessageDigest constructor finished" << std::endl;
   }
@@ -71,7 +71,7 @@ public:
   {
     ctx = EVP_MD_CTX_new();
     if (!ctx) {
-      throw HashingException { "EVP_MD_CTX_new failed.\n" };
+      throw HashingException { "EVP_MD_CTX_new failed." };
     }
     std::cout << "OpenSSLDigestContext constructor finished" << std::endl;
   }
@@ -96,7 +96,7 @@ public:
   {
     mb = static_cast<unsigned char*>(OPENSSL_malloc(size));
     if (mb == nullptr) {
-      throw HashingException { "No memory.\n" }; 
+      throw HashingException { "No memory." }; 
     }    
     std::cout << "OpenSSLMemoryBuffer constructor finished" << std::endl;
   }
@@ -131,7 +131,7 @@ OpenSSLWrapper::~OpenSSLWrapper()
 void OpenSSLWrapper::init() 
 {
   if (EVP_DigestInit(digest_ctx->digest_context(), md->message_digest()) != 1) {
-      throw HashingException { "EVP_DigestInit failed.\n" };
+      throw HashingException { "EVP_DigestInit failed." };
   }
   initialized = true;
 }
@@ -139,26 +139,26 @@ void OpenSSLWrapper::init()
 void OpenSSLWrapper::updateDigest(char* buffer, size_t buffer_size)
 {
   if (!initialized) {
-      throw HashingException { "OpenSSLWrapper must be initialized before updateDigest.\n" };
+      throw HashingException { "OpenSSLWrapper must be initialized before updateDigest." };
   }
   if (EVP_DigestUpdate(digest_ctx->digest_context(), buffer, buffer_size) != 1) {
-      throw HashingException { "EVP_DigestUpdate() failed.\n" };
+      throw HashingException { "EVP_DigestUpdate() failed." };
   }
 }
 
 std::string OpenSSLWrapper::digestValue()
 {
   if (!initialized) {
-      throw HashingException { "OpenSSLWrapper must be initialized before digestValue.\n" };
+      throw HashingException { "OpenSSLWrapper must be initialized before digestValue." };
   }
   // unsigned char *digest_value = nullptr;
   unsigned int digest_length = EVP_MD_get_size(md->message_digest());
   if (digest_length <= 0) {
-    throw HashingException { "EVP_MD_get_size returned invalid size.\n" };
+    throw HashingException { "EVP_MD_get_size returned invalid size." };
   }
   OpenSSLMemoryBuffer digest_value{ digest_length };
   if (EVP_DigestFinal(digest_ctx->digest_context(), digest_value.memory_buffer(), &digest_length) != 1) {
-    throw HashingException { "EVP_DigestFinal() failed.\n" };
+    throw HashingException { "EVP_DigestFinal() failed." };
   }
   // converting buffer to hex string
   std::stringstream ss;

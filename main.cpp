@@ -14,5 +14,13 @@ int main() {
     binary_stdin.close();
   } catch (const HashingException& ex) {
     std::cerr << "Error: " << ex.what() << std::endl;
+    // проверяем наличие ошибок OpenSSL и печатаем их если они есть
+    const auto& openssl_errors = ex.get_openssl_errors();
+    if (openssl_errors.size()) {
+      std::cerr << "OpenSSL Errors: " << std::endl;
+      for (const auto& error : openssl_errors) {
+        std::cerr << error << std::endl;
+      }
+    }
   }
 }
