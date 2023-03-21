@@ -3,3 +3,6 @@
 
 # exclude build folders
 build/
+
+#exclude input data folder
+input/

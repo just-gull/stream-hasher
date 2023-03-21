@@ -10,11 +10,13 @@ class HashStream {
   size_t processed_bytes{};
   OpenSSLWrapper wrapper;
 
-  friend std::ostream& operator<<(std::ostream& out, const HashStream& o);
+  friend std::ostream& operator<<(std::ostream& out, HashStream& o);
+  friend std::istream& operator>>(std::istream& input, HashStream& value);
   
 public:
   HashStream();
   ~HashStream();
 };
+
 
 #endif
