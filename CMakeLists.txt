@@ -14,6 +14,7 @@ if (OPENSSL_FOUND)
     src/hashing/hash-stream.cpp 
     src/hashing/hashing-exception.cpp
     src/openssl-wrapper/openssl-wrapper.cpp 
+    src/openssl-wrapper/openssl-components.cpp 
   )
   target_link_libraries(stream-hasher OpenSSL::Crypto)
 endif()

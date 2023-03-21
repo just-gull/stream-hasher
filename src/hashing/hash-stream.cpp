@@ -32,10 +32,8 @@ std::istream& operator>>(std::istream& input, HashStream& hs)
 
 HashStream::HashStream() 
 {
-  std::cout << "HashStream constructor called" << std::endl;
 }
 
 HashStream::~HashStream()
 {
-  std::cout << "HashStream destructor called" << std::endl;
 }
