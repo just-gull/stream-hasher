@@ -26,9 +26,9 @@ OSSL_LIB_CTX* OpenSSLContext::library_context()
 OpenSSLMessageDigest::OpenSSLMessageDigest() : md{ nullptr }
 {
   // auto val = contextlibrary_context();
-  md = EVP_MD_fetch(context.library_context(), "SHA1", nullptr);
+  md = EVP_MD_fetch(context.library_context(), "SHA256", nullptr);
   if (!md) {
-    throw HashingException { "EVP_MD_fetch could not find SHA1" };
+    throw HashingException { "EVP_MD_fetch could not find SHA256" };
   }
 }
 
